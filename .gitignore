@@ -1,0 +1,23 @@
+# Виртуальные окружения
+.venv/
+venv/
+env/
+.venv
+venv
+env
+
+# Файлы окружения
+.env
+.env.*
+
+# __pycache__ и байт-код Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django файлы
+db.sqlite3
+*.log
+
+# IDE
+.idea/
