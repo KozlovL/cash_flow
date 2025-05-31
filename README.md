@@ -39,7 +39,12 @@ cd cash_flow
 docker compose up --build -d
 ```
 
-3. **Запуск проекта**
+3. **Создание суперпользователя**
+```bash
+docker compose exec backend python manage.py createsuperuser
+```
+
+4. **Запуск проекта**
 
 Проект доступен по адресу:  
 **http://localhost:3000**
@@ -55,10 +60,13 @@ API доступен по адресу:
 
 ## Примеры API-запросов
 
-**Получить список записей (Records)**
+**Получить список записей**
+```bash
 GET http://localhost:8000/api/records/
+```
 
 **Создать новую запись**
+```bash
 POST http://localhost:8000/api/records/
 Content-Type: application/json
 {
@@ -70,8 +78,10 @@ Content-Type: application/json
   "pub_date": 01.01.2025,
   "comment": "Запись по номером 1"
 }
+```
 
 **Обновить запись**
+```bash
 PATCH http://localhost:8000/api/records/<id>/
 Content-Type: application/json
 {
@@ -83,6 +93,9 @@ Content-Type: application/json
   "pub_date": 01.01.2025,
   "comment": "Запись по номером 1"
 }
+```
 
 **Удалить запись**
+```bash
 DELETE http://localhost:8000/api/records/<id>/
+```
