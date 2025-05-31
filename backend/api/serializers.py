@@ -131,13 +131,12 @@ class RecordSerializer(serializers.ModelSerializer):
         Raises:
             ValidationError: Если категория не принадлежит типу
         """
-        # Получаем объект type по имени в initial_data
+        # Получаем имя объекта Type из initial_data
         record_type_name = self.initial_data['type']
-        record_type = Type.objects.get(name=record_type_name)
         # Проверяем соответствие категории типу
-        if category.type != record_type:
+        if category.type.name != record_type_name:
             raise serializers.ValidationError(
-                f'Тип {record_type} '
+                f'Тип {record_type_name} '
                 f'не содержит категорию {category}.'
             )
         return category

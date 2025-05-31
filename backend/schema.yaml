@@ -1,0 +1,918 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/records/:
+    get:
+      operationId: listRecords
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: pub_date
+        required: false
+        in: query
+        description: pub_date
+        schema:
+          type: string
+      - name: status
+        required: false
+        in: query
+        description: status
+        schema:
+          type: string
+      - name: type
+        required: false
+        in: query
+        description: type
+        schema:
+          type: string
+      - name: category
+        required: false
+        in: query
+        description: category
+        schema:
+          type: string
+      - name: subcategory
+        required: false
+        in: query
+        description: subcategory
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Record'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createRecord
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Record'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Record'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Record'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+          description: ''
+      tags:
+      - api
+  /api/records/{id}/:
+    get:
+      operationId: retrieveRecord
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "A unique integer value identifying this \u0417\u0430\u043F\u0438\
+          \u0441\u044C."
+        schema:
+          type: string
+      - name: pub_date
+        required: false
+        in: query
+        description: pub_date
+        schema:
+          type: string
+      - name: status
+        required: false
+        in: query
+        description: status
+        schema:
+          type: string
+      - name: type
+        required: false
+        in: query
+        description: type
+        schema:
+          type: string
+      - name: category
+        required: false
+        in: query
+        description: category
+        schema:
+          type: string
+      - name: subcategory
+        required: false
+        in: query
+        description: subcategory
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateRecord
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "A unique integer value identifying this \u0417\u0430\u043F\u0438\
+          \u0441\u044C."
+        schema:
+          type: string
+      - name: pub_date
+        required: false
+        in: query
+        description: pub_date
+        schema:
+          type: string
+      - name: status
+        required: false
+        in: query
+        description: status
+        schema:
+          type: string
+      - name: type
+        required: false
+        in: query
+        description: type
+        schema:
+          type: string
+      - name: category
+        required: false
+        in: query
+        description: category
+        schema:
+          type: string
+      - name: subcategory
+        required: false
+        in: query
+        description: subcategory
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Record'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Record'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Record'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyRecord
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "A unique integer value identifying this \u0417\u0430\u043F\u0438\
+          \u0441\u044C."
+        schema:
+          type: string
+      - name: pub_date
+        required: false
+        in: query
+        description: pub_date
+        schema:
+          type: string
+      - name: status
+        required: false
+        in: query
+        description: status
+        schema:
+          type: string
+      - name: type
+        required: false
+        in: query
+        description: type
+        schema:
+          type: string
+      - name: category
+        required: false
+        in: query
+        description: category
+        schema:
+          type: string
+      - name: subcategory
+        required: false
+        in: query
+        description: subcategory
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/categories/:
+    get:
+      operationId: listCategories
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: type
+        required: false
+        in: query
+        description: type
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Category'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createCategory
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Category'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Category'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+      tags:
+      - api
+  /api/categories/{id}/:
+    get:
+      operationId: retrieveCategory
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "A unique integer value identifying this \u041A\u0430\u0442\u0435\
+          \u0433\u043E\u0440\u0438\u044F."
+        schema:
+          type: string
+      - name: type
+        required: false
+        in: query
+        description: type
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateCategory
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "A unique integer value identifying this \u041A\u0430\u0442\u0435\
+          \u0433\u043E\u0440\u0438\u044F."
+        schema:
+          type: string
+      - name: type
+        required: false
+        in: query
+        description: type
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Category'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Category'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyCategory
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "A unique integer value identifying this \u041A\u0430\u0442\u0435\
+          \u0433\u043E\u0440\u0438\u044F."
+        schema:
+          type: string
+      - name: type
+        required: false
+        in: query
+        description: type
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/subcategories/:
+    get:
+      operationId: listSubcategories
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: category
+        required: false
+        in: query
+        description: category
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Subcategory'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createSubcategory
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subcategory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Subcategory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Subcategory'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subcategory'
+          description: ''
+      tags:
+      - api
+  /api/subcategories/{id}/:
+    get:
+      operationId: retrieveSubcategory
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "A unique integer value identifying this \u041F\u043E\u0434\u043A\
+          \u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F."
+        schema:
+          type: string
+      - name: category
+        required: false
+        in: query
+        description: category
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subcategory'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateSubcategory
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "A unique integer value identifying this \u041F\u043E\u0434\u043A\
+          \u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F."
+        schema:
+          type: string
+      - name: category
+        required: false
+        in: query
+        description: category
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subcategory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Subcategory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Subcategory'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subcategory'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroySubcategory
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "A unique integer value identifying this \u041F\u043E\u0434\u043A\
+          \u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F."
+        schema:
+          type: string
+      - name: category
+        required: false
+        in: query
+        description: category
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/statuses/:
+    get:
+      operationId: listStatuses
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Status'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createStatus
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Status'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Status'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Status'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: ''
+      tags:
+      - api
+  /api/statuses/{id}/:
+    get:
+      operationId: retrieveStatus
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "A unique integer value identifying this \u0421\u0442\u0430\u0442\
+          \u0443\u0441."
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateStatus
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "A unique integer value identifying this \u0421\u0442\u0430\u0442\
+          \u0443\u0441."
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Status'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Status'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Status'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyStatus
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "A unique integer value identifying this \u0421\u0442\u0430\u0442\
+          \u0443\u0441."
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/types/:
+    get:
+      operationId: listTypes
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Type'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createType
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Type'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Type'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Type'
+          description: ''
+      tags:
+      - api
+  /api/types/{id}/:
+    get:
+      operationId: retrieveType
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "A unique integer value identifying this \u0422\u0438\u043F."
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Type'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateType
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "A unique integer value identifying this \u0422\u0438\u043F."
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Type'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Type'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Type'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyType
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: "A unique integer value identifying this \u0422\u0438\u043F."
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    Record:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        pub_date:
+          type: string
+          format: date
+        status:
+          type: string
+        type:
+          type: string
+        category:
+          type: string
+        subcategory:
+          type: array
+          items:
+            type: string
+        amount:
+          type: integer
+          minimum: 1
+        comment:
+          type: string
+          nullable: true
+      required:
+      - status
+      - type
+      - category
+      - subcategory
+      - amount
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 128
+        type:
+          type: string
+      required:
+      - name
+      - type
+    Subcategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 128
+        category:
+          type: string
+      required:
+      - name
+      - category
+    Status:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 128
+      required:
+      - name
+    Type:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 128
+      required:
+      - name

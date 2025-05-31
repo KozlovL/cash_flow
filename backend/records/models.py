@@ -1,6 +1,5 @@
 from datetime import date
 
-from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.db import models
 
@@ -57,8 +56,8 @@ class Category(NameModel):
 
     def __str__(self):
         return (
-            f'Название - {self.name[:NAME_WIDTH]}'
-            f'тип - {self.type.name[:NAME_WIDTH]}'
+            f'Название - {self.name[:NAME_WIDTH]}. '
+            f'Тип - {self.type}.'
         )
 
 
@@ -76,8 +75,8 @@ class Subcategory(NameModel):
 
     def __str__(self):
         return (
-            f'Название - {self.name[:NAME_WIDTH]}'
-            f'Категория - {self.category.name[:NAME_WIDTH]}'
+            f'Название - {self.name[:NAME_WIDTH]}. '
+            f'Категория: {self.category}.'
         )
 
 
@@ -132,29 +131,12 @@ class Record(models.Model):
         ordering = ('-pub_date',)
         default_related_name = 'records'
 
-    def clean(self):
-        super().clean()
-        # Проверка, что категория содержит подкатегории.
-        for subcategory in self.subcategories.all():
-            if self.category != subcategory.category:
-                raise ValidationError(
-                    f'Категория {self.category} '
-                    f'не содержит подкатегорию {subcategory.category}.'
-                )
-
     def __str__(self):
-        subcategory_names = ", ".join(
-            [
-                subcategory.name[:NAME_WIDTH]
-                for subcategory in self.subcategory.all()
-            ]
-        )
         return (
             f'Дата публикации - {self.pub_date}. '
-            f'Статус - {self.status.name[:NAME_WIDTH]}. '
-            f'Тип - {self.type.name[:NAME_WIDTH]}. '
+            f'Статус - {self.status}. '
+            f'Тип - {self.type}. '
             f'Сумма - {self.amount} р. '
-            f'Категория - {self.category.name[:NAME_WIDTH]}. '
-            f'Подкатегории: {subcategory_names}. '
+            f'Категория - {self.category}. '
             f'Комментарий - {self.comment[:TEXT_WIDTH]}.'
         )

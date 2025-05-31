@@ -1,4 +1,5 @@
-from django.urls import path, include
+from django.urls import include
+from django.urls import path
 from rest_framework import routers
 
 from api.views import (
@@ -12,6 +13,7 @@ router.register('categories', CategoryViewSet, basename='category')
 router.register('subcategories', SubcategoryViewSet, basename='subcategory')
 router.register('statuses', StatusViewSet, basename='status')
 router.register('types', TypeViewSet, basename='type')
+
 urlpatterns = [
     path('', include(router.urls)),
 ]

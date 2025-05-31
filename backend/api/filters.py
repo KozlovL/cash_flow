@@ -1,4 +1,3 @@
-from rest_framework import filters
 from django_filters import rest_framework as django_filters
 
 from records.models import Record, Status, Type, Category, Subcategory
@@ -24,25 +23,21 @@ class RecordFilterSet(django_filters.FilterSet):
         queryset=Status.objects.all(),
         field_name='status__name',  # Поле для фильтра
         to_field_name='name',  # Поле в модели
-        method='filter_fields',  # Метод фильтрации
     )
     type = django_filters.ModelMultipleChoiceFilter(
         queryset=Type.objects.all(),
         field_name='type__name',
         to_field_name='name',
-        method='filter_fields',
     )
     category = django_filters.ModelMultipleChoiceFilter(
         queryset=Category.objects.all(),
         field_name='category__name',
         to_field_name='name',
-        method='filter_fields',
     )
     subcategory = django_filters.ModelMultipleChoiceFilter(
         queryset=Subcategory.objects.all(),
         field_name='subcategory__name',
         to_field_name='name',
-        method='filter_fields',
     )
 
     class Meta:
@@ -51,20 +46,26 @@ class RecordFilterSet(django_filters.FilterSet):
             'pub_date',
         )
 
-    def filter_fields(self, queryset, name, value):
-        """
-        Кастомный метод фильтрации.
 
-        Args:
-            queryset (QuerySet): Исходный queryset записей
-            name (str): Имя поля фильтра (например 'status')
-            value (List[Model]): Список объектов модели (например List[Status])
+class CategoryFilterSet(django_filters.FilterSet):
+    type = django_filters.ModelMultipleChoiceFilter(
+        queryset=Type.objects.all(),
+        field_name='type__name',
+        to_field_name='name',
+    )
 
-        Returns:
-            QuerySet: Отфильтрованный queryset
-        """
-        # Если параметров нет, возвращаем queryset
-        if not value:
-            return queryset
-        # Фильтруем queryset по соответствию поля параметрам
-        return queryset.filter(**{f'{name}__in': value})
+    class Meta:
+        model = Category
+        fields = ()
+
+
+class SubcategoryFilterSet(django_filters.FilterSet):
+    category = django_filters.ModelMultipleChoiceFilter(
+        queryset=Category.objects.all(),
+        field_name='category__name',
+        to_field_name='name',
+    )
+
+    class Meta:
+        model = Subcategory
+        fields = ()

@@ -1,0 +1,104 @@
+[
+  {
+    "model": "records.status",
+    "pk": 1,
+    "fields": {
+      "name": "Черновик"
+    }
+  },
+  {
+    "model": "records.status",
+    "pk": 2,
+    "fields": {
+      "name": "Опубликовано"
+    }
+  },
+  {
+    "model": "records.status",
+    "pk": 3,
+    "fields": {
+      "name": "Архив"
+    }
+  },
+
+  {
+    "model": "records.type",
+    "pk": 1,
+    "fields": {
+      "name": "Доход"
+    }
+  },
+  {
+    "model": "records.type",
+    "pk": 2,
+    "fields": {
+      "name": "Расход"
+    }
+  },
+
+  {
+    "model": "records.category",
+    "pk": 1,
+    "fields": {
+      "name": "Зарплата",
+      "type": 1
+    }
+  },
+  {
+    "model": "records.category",
+    "pk": 2,
+    "fields": {
+      "name": "Фриланс",
+      "type": 1
+    }
+  },
+  {
+    "model": "records.category",
+    "pk": 3,
+    "fields": {
+      "name": "Продукты",
+      "type": 2
+    }
+  },
+  {
+    "model": "records.category",
+    "pk": 4,
+    "fields": {
+      "name": "Транспорт",
+      "type": 2
+    }
+  },
+
+  {
+    "model": "records.subcategory",
+    "pk": 1,
+    "fields": {
+      "name": "Оклад",
+      "category": 1
+    }
+  },
+  {
+    "model": "records.subcategory",
+    "pk": 2,
+    "fields": {
+      "name": "Бонусы",
+      "category": 1
+    }
+  },
+  {
+    "model": "records.subcategory",
+    "pk": 3,
+    "fields": {
+      "name": "Супермаркет",
+      "category": 3
+    }
+  },
+  {
+    "model": "records.subcategory",
+    "pk": 4,
+    "fields": {
+      "name": "Такси",
+      "category": 4
+    }
+  }
+]

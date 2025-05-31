@@ -1,9 +1,12 @@
 from django.contrib import admin
+
+from records.forms import RecordForm
 from records.models import Record, Type, Status, Category, Subcategory
 
 
 @admin.register(Record)
 class RecordAdmin(admin.ModelAdmin):
+    form = RecordForm
     list_display = (
         'pub_date',
         'status',
@@ -91,7 +94,6 @@ class SubcategoryAdmin(admin.ModelAdmin):
         'category__name',
     )
     list_filter = (
-        'name',
         'category',
     )
     empty_value_display = '-пусто-'
