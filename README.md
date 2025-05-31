@@ -75,7 +75,7 @@ Content-Type: application/json
   "category": "Зарплата",
   "subcategory": "Оклад",
   "amount": 1000,
-  "pub_date": 01.01.2025,
+  "pub_date": "01.01.2025",
   "comment": "Запись по номером 1"
 }
 ```
@@ -90,7 +90,7 @@ Content-Type: application/json
   "category": "Зарплата",
   "subcategory": "Оклад",
   "amount": 1000,
-  "pub_date": 01.01.2025,
+  "pub_date": "01.01.2025",
   "comment": "Запись по номером 1"
 }
 ```
